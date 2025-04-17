@@ -27,6 +27,18 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
+@app.route('/how-it-works')
+def how_it_works():
+    return render_template('how_it_works.html', title='How It Works')
+
+@app.route('/pricing')
+def pricing():
+    return render_template('pricing.html', title='Pricing')
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html', title='Blog')
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:

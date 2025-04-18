@@ -167,26 +167,34 @@
 {% else %}
 <!-- Landing Page for Guests -->
 <!-- Hero Section -->
-<section class="hero-section py-5 bg-light">
+<section class="hero-section py-5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-4">Stop Mold Before It Starts</h1>
-                <p class="lead mb-4">Real-time humidity, temperature, and air quality monitoring for your home.</p>
+                <h1 class="display-4 fw-bold mb-4">Smart Living,<br>Simplified</h1>
+                <p class="lead mb-4">Transform your home into a smart, connected space with real-time monitoring and intelligent automation.</p>
                 <div class="d-flex gap-3">
                     <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4">
-                        Get Your Sensors Today <i class="bi bi-arrow-right ms-2"></i>
+                        Get Started <i class="bi bi-arrow-right ms-2"></i>
                     </a>
-                    <a href="#how-it-works" class="btn btn-outline-secondary btn-lg px-4">Learn More</a>
+                    <a href="#how-it-works" class="btn btn-outline-secondary btn-lg px-4">
+                        Learn More <i class="bi bi-info-circle ms-2"></i>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="position-relative">
-                    <img src="https://placehold.co/600x400" alt="Smart Home Dashboard" class="img-fluid rounded-4 shadow-lg">
-                    <div class="position-absolute top-50 start-50 translate-middle">
-                        <div class="bg-white p-3 rounded-3 shadow-sm">
+                    <div class="tech-grid">
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                        <div class="grid-item"></div>
+                    </div>
+                    <img src="https://placehold.co/600x400" alt="Smart Home Dashboard" class="img-fluid rounded-4 shadow-lg position-relative z-1">
+                    <div class="position-absolute top-50 start-50 translate-middle z-2">
+                        <div class="bg-white p-3 rounded-3 shadow-sm d-flex align-items-center">
                             <i class="bi bi-shield-check text-success fs-4"></i>
-                            <span class="ms-2">All Systems Normal</span>
+                            <span class="ms-2">All Systems Connected</span>
                         </div>
                     </div>
                 </div>
@@ -317,28 +325,88 @@
 
 <style>
     .hero-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        background: linear-gradient(135deg, var(--background-color) 0%, #e8eaf6 100%);
+        position: relative;
+        overflow: hidden;
     }
-    .icon-box {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+
+    .tech-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+        z-index: 0;
     }
+
+    .grid-item {
+        background: rgba(0, 168, 255, 0.05);
+        border: 1px solid rgba(0, 168, 255, 0.1);
+        border-radius: 12px;
+        backdrop-filter: blur(5px);
+    }
+
     .card {
-        transition: transform 0.2s;
+        background: var(--card-bg);
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
+
+    .icon-box {
+        background: linear-gradient(135deg, rgba(0, 168, 255, 0.1), rgba(0, 210, 211, 0.1));
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .icon-box:hover {
+        transform: scale(1.05);
+    }
+
     .btn {
-        border-radius: 50px;
+        border-radius: 8px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
     }
+
     .btn-primary {
-        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        background: linear-gradient(135deg, var(--primary-color), #0097e6);
         border: none;
     }
+
     .btn-primary:hover {
-        background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+        background: linear-gradient(135deg, #0097e6, var(--primary-color));
+        transform: translateY(-2px);
+    }
+
+    .btn-outline-secondary {
+        border: 2px solid var(--secondary-color);
+        color: var(--secondary-color);
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: var(--secondary-color);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .tech-grid {
+            display: none;
+        }
     }
 </style>
 {% endblock %} 

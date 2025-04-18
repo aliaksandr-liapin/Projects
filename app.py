@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from models import db, User
+from models import db, User, Device
 import os
+from sqlalchemy import func
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -21,6 +22,8 @@ def load_user(user_id):
 @app.route('/')
 def index():
     if current_user.is_authenticated:
+        if current_user.is_admin:
+            return redirect(url_for('admin_dashboard'))
         return redirect(url_for('dashboard'))
     return render_template('index.html', title='Home')
 
@@ -63,6 +66,8 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
+        if current_user.is_admin:
+            return redirect(url_for('admin_dashboard'))
         return redirect(url_for('dashboard'))
     
     if request.method == 'POST':
@@ -72,6 +77,8 @@ def login():
         
         if user and user.check_password(password):
             login_user(user)
+            if user.is_admin:
+                return redirect(url_for('admin_dashboard'))
             return redirect(url_for('dashboard'))
         
         flash('Invalid email or password')
@@ -110,6 +117,32 @@ def profile():
 @login_required
 def settings():
     return render_template('settings.html', title='Settings')
+
+# Admin route - only accessible through direct link
+@app.route('/admin-dashboard-7x9k2p')
+@login_required
+def admin_dashboard():
+    # Check if user is admin (you should add an is_admin field to your User model)
+    if not current_user.is_admin:
+        flash('Access denied. Admin privileges required.', 'danger')
+        return redirect(url_for('index'))
+    
+    # Get statistics
+    total_users = User.query.count()
+    total_devices = Device.query.count()
+    active_devices = Device.query.filter_by(status='active').count()
+    recent_users = User.query.order_by(User.created_at.desc()).limit(5).all()
+    device_types = db.session.query(
+        Device.type,
+        func.count(Device.id).label('count')
+    ).group_by(Device.type).all()
+    
+    return render_template('admin.html',
+                         total_users=total_users,
+                         total_devices=total_devices,
+                         active_devices=active_devices,
+                         recent_users=recent_users,
+                         device_types=device_types)
 
 if __name__ == '__main__':
     with app.app_context():

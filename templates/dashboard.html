@@ -1,117 +1,395 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <div class="row mb-4">
-        <div class="col">
-            <h1 class="display-4">Welcome, {{ current_user.name }}!</h1>
-            <p class="lead text-muted">Here's what's happening with your smart home.</p>
+<style>
+    :root {
+        --user-primary: #6366f1;
+        --user-secondary: #4338ca;
+        --user-accent: #818cf8;
+        --user-success: #10b981;
+        --user-warning: #f59e0b;
+        --user-danger: #ef4444;
+    }
+
+    .material-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 
+                    0 4px 5px 0 rgba(0,0,0,0.14), 
+                    0 1px 10px 0 rgba(0,0,0,0.12);
+        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+    .material-card:hover {
+        box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2), 
+                    0 8px 10px 1px rgba(0,0,0,0.14), 
+                    0 3px 14px 2px rgba(0,0,0,0.12);
+        transform: translateY(-2px);
+    }
+
+    .stats-card {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .stats-card .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .stats-card .title {
+        color: rgba(0,0,0,0.87);
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.1px;
+    }
+
+    .stats-card .value {
+        color: rgba(0,0,0,0.87);
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    .stats-card .trend {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.875rem;
+        color: rgba(0,0,0,0.6);
+    }
+
+    .trend.positive {
+        color: var(--user-success);
+    }
+
+    .trend.negative {
+        color: var(--user-danger);
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .data-table th {
+        background: #f5f5f5;
+        color: rgba(0,0,0,0.87);
+        font-weight: 500;
+        text-align: left;
+        padding: 16px;
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .data-table td {
+        padding: 16px;
+        color: rgba(0,0,0,0.87);
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .data-table tr:hover {
+        background: rgba(99,102,241,0.04);
+    }
+
+    .status-badge {
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+
+    .status-online {
+        background: rgba(16,185,129,0.1);
+        color: var(--user-success);
+    }
+
+    .status-offline {
+        background: rgba(239,68,68,0.1);
+        color: var(--user-danger);
+    }
+
+    .material-button {
+        background: var(--user-primary);
+        color: white;
+        border: none;
+        padding: 8px 24px;
+        border-radius: 24px;
+        font-weight: 500;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 
+                    0 2px 2px 0 rgba(0,0,0,0.14), 
+                    0 1px 5px 0 rgba(0,0,0,0.12);
+    }
+
+    .material-button:hover {
+        background: var(--user-secondary);
+        box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 
+                    0 4px 5px 0 rgba(0,0,0,0.14), 
+                    0 1px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        background: white;
+        border-radius: 24px;
+        padding: 8px 16px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 24px;
+    }
+
+    .search-bar input {
+        border: none;
+        outline: none;
+        padding: 8px;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .search-bar i {
+        color: rgba(0,0,0,0.54);
+        margin-right: 8px;
+    }
+
+    .device-control {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .device-control .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.12);
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked + .slider {
+        background-color: var(--user-primary);
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+</style>
+
+<div class="container-fluid py-4">
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Search your devices...">
+    </div>
+
+    <!-- Stats Cards Row -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="material-card stats-card">
+                <div class="icon" style="background: rgba(99,102,241,0.1); color: var(--user-primary);">
+                    <i class="bi bi-device-hdd"></i>
+                </div>
+                <div class="title">Active Devices</div>
+                <div class="value">{{ user_devices_active }}</div>
+                <div class="trend positive">
+                    <i class="bi bi-arrow-up"></i>
+                    <span>All devices online</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="material-card stats-card">
+                <div class="icon" style="background: rgba(16,185,129,0.1); color: var(--user-success);">
+                    <i class="bi bi-lightning-charge"></i>
+                </div>
+                <div class="title">Energy Usage</div>
+                <div class="value">2.4 kWh</div>
+                <div class="trend negative">
+                    <i class="bi bi-arrow-down"></i>
+                    <span>15% vs yesterday</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="material-card stats-card">
+                <div class="icon" style="background: rgba(245,158,11,0.1); color: var(--user-warning);">
+                    <i class="bi bi-thermometer-half"></i>
+                </div>
+                <div class="title">Avg. Temperature</div>
+                <div class="value">23°C</div>
+                <div class="trend">
+                    <i class="bi bi-dash"></i>
+                    <span>Optimal range</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="material-card stats-card">
+                <div class="icon" style="background: rgba(239,68,68,0.1); color: var(--user-danger);">
+                    <i class="bi bi-bell"></i>
+                </div>
+                <div class="title">Notifications</div>
+                <div class="value">{{ notification_count }}</div>
+                <div class="trend positive">
+                    <i class="bi bi-arrow-down"></i>
+                    <span>No urgent alerts</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Quick Stats -->
-    <div class="row mb-4">
-        <div class="col-md-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">
-                        <i class="bi bi-house-door"></i> Connected Devices
-                    </h5>
-                    <h2 class="card-text">12</h2>
-                    <p class="text-muted small">Active devices</p>
-                </div>
+    <!-- Devices Control -->
+    <div class="material-card mb-4">
+        <div class="p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="m-0">Your Devices</h5>
+                <button class="material-button">Add Device</button>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-success">
-                        <i class="bi bi-lightning-charge"></i> Energy Usage
-                    </h5>
-                    <h2 class="card-text">245 kWh</h2>
-                    <p class="text-muted small">This month</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-info">
-                        <i class="bi bi-shield-check"></i> Security Status
-                    </h5>
-                    <h2 class="card-text">Active</h2>
-                    <p class="text-muted small">All systems secure</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-warning">
-                        <i class="bi bi-bell"></i> Notifications
-                    </h5>
-                    <h2 class="card-text">3</h2>
-                    <p class="text-muted small">New alerts</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Quick Actions -->
-    <div class="row mb-4">
-        <div class="col">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Quick Actions</h5>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-primary">
-                            <i class="bi bi-plus-circle me-2"></i>Add Device
-                        </button>
-                        <button class="btn btn-outline-success">
-                            <i class="bi bi-gear me-2"></i>Settings
-                        </button>
-                        <button class="btn btn-outline-info">
-                            <i class="bi bi-graph-up me-2"></i>Reports
-                        </button>
-                        <button class="btn btn-outline-warning">
-                            <i class="bi bi-shield me-2"></i>Security
-                        </button>
-                    </div>
-                </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Device</th>
+                            <th>Status</th>
+                            <th>Last Active</th>
+                            <th>Battery</th>
+                            <th>Control</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for device in user_devices %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <i class="bi bi-{{ device.icon }}" style="font-size: 1.5rem; color: var(--user-primary);"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 500;">{{ device.name }}</div>
+                                        <div style="font-size: 0.875rem; color: rgba(0,0,0,0.6);">{{ device.location }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge {% if device.is_online %}status-online{% else %}status-offline{% endif %}">
+                                    {{ "Online" if device.is_online else "Offline" }}
+                                </span>
+                            </td>
+                            <td>{{ device.last_active.strftime('%Y-%m-%d %H:%M') if device.last_active else 'Never' }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="progress" style="width: 100px; height: 8px; border-radius: 4px; background: rgba(0,0,0,0.1);">
+                                        <div class="progress-bar" role="progressbar" 
+                                             style="width: {{ device.battery }}%; background: {% if device.battery > 60 %}var(--user-success){% elif device.battery > 20 %}var(--user-warning){% else %}var(--user-danger){% endif %};"
+                                             aria-valuenow="{{ device.battery }}" aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                    <span class="ms-2" style="font-size: 0.875rem;">{{ device.battery }}%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="device-control">
+                                    <label class="switch">
+                                        <input type="checkbox" {% if device.is_on %}checked{% endif %}>
+                                        <span class="slider"></span>
+                                    </label>
+                                    <button class="material-button" style="padding: 4px 12px; font-size: 0.875rem;">
+                                        <i class="bi bi-gear-fill"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     <!-- Recent Activity -->
-    <div class="row">
-        <div class="col">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Recent Activity</h5>
-                    <div class="list-group list-group-flush">
-                        <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Living Room Light</h6>
-                                <small class="text-muted">2 minutes ago</small>
-                            </div>
-                            <p class="mb-1">Turned on at 7:30 PM</p>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Front Door</h6>
-                                <small class="text-muted">15 minutes ago</small>
-                            </div>
-                            <p class="mb-1">Door unlocked by keypad</p>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Thermostat</h6>
-                                <small class="text-muted">1 hour ago</small>
-                            </div>
-                            <p class="mb-1">Temperature set to 72°F</p>
-                        </div>
-                    </div>
-                </div>
+    <div class="material-card">
+        <div class="p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="m-0">Recent Activity</h5>
+                <button class="material-button">View All</button>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Device</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for activity in recent_activities %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <i class="bi bi-{{ activity.icon }}" style="font-size: 1.5rem; color: var(--user-primary);"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 500;">{{ activity.event }}</div>
+                                        <div style="font-size: 0.875rem; color: rgba(0,0,0,0.6);">{{ activity.description }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ activity.device_name }}</td>
+                            <td>{{ activity.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td>
+                                <span class="status-badge {% if activity.status == 'success' %}status-online{% else %}status-offline{% endif %}">
+                                    {{ activity.status }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

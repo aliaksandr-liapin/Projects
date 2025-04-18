@@ -16,9 +16,12 @@
             --accent-color: #00d2d3;
             --background-color: #f5f6fa;
             --text-color: #2c3e50;
-            --card-bg: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.7);
             --heading-font: 'Manrope', sans-serif;
             --body-font: 'Inter', sans-serif;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
         }
 
         body {
@@ -27,11 +30,46 @@
             line-height: 1.6;
             background-color: var(--background-color);
             color: var(--text-color);
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
         }
 
         .navbar {
-            background: linear-gradient(135deg, var(--secondary-color), #1a1a2e) !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(44, 62, 80, 0.8) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px var(--glass-shadow);
+            padding: 1rem 0;
+        }
+
+        .navbar .container {
+            max-width: 1400px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: var(--body-font);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                gap: 1rem;
+                padding: 1rem 0;
+            }
         }
 
         .navbar-brand {
@@ -40,9 +78,10 @@
             font-size: 1.5rem;
         }
 
-        .nav-link {
-            font-family: var(--body-font);
-            font-weight: 500;
+        .navbar-collapse {
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
         }
 
         .content {
@@ -71,16 +110,18 @@
         }
 
         .card {
-            background: var(--card-bg);
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px var(--glass-shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 12px 40px var(--glass-shadow);
         }
 
         .btn-primary {
@@ -89,7 +130,9 @@
             font-family: var(--body-font);
             font-weight: 500;
             padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         .btn-primary:hover {
@@ -103,7 +146,9 @@
             font-family: var(--body-font);
             font-weight: 500;
             padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         .btn-outline-secondary:hover {
@@ -113,10 +158,13 @@
         }
 
         footer {
-            background: linear-gradient(135deg, var(--secondary-color), #1a1a2e);
+            background: rgba(44, 62, 80, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: white;
             padding: 3rem 0 1.5rem;
             margin-top: 3rem;
+            border-top: 1px solid var(--glass-border);
         }
 
         footer h5 {
@@ -136,8 +184,11 @@
         }
 
         .icon-box {
-            background: linear-gradient(135deg, rgba(0, 168, 255, 0.1), rgba(0, 210, 211, 0.1));
-            border-radius: 12px;
+            background: rgba(0, 168, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
             padding: 1.5rem;
             transition: transform 0.3s ease;
         }
@@ -147,15 +198,41 @@
         }
 
         .form-control {
-            border-radius: 8px;
-            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
             padding: 0.75rem 1rem;
             font-family: var(--body-font);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         .form-control:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 0.2rem rgba(0, 168, 255, 0.25);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .dropdown-menu {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px var(--glass-shadow);
+        }
+
+        .dropdown-item {
+            border-radius: 8px;
+            margin: 2px 8px;
+        }
+
+        .modal-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
         }
 
         /* Custom scrollbar */
@@ -188,7 +265,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
@@ -210,6 +287,10 @@
                             {{ current_user.name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
+                            {% if current_user.is_admin %}
+                            <li><a class="dropdown-item" href="{{ url_for('admin_dashboard') }}"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            {% endif %}
                             <li><a class="dropdown-item" href="{{ url_for('dashboard') }}"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('profile') }}"><i class="bi bi-person me-2"></i>Profile</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('settings') }}"><i class="bi bi-gear me-2"></i>Settings</a></li>

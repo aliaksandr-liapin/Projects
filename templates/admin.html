@@ -1,0 +1,329 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .material-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 
+                    0 4px 5px 0 rgba(0,0,0,0.14), 
+                    0 1px 10px 0 rgba(0,0,0,0.12);
+        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+    .material-card:hover {
+        box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2), 
+                    0 8px 10px 1px rgba(0,0,0,0.14), 
+                    0 3px 14px 2px rgba(0,0,0,0.12);
+        transform: translateY(-2px);
+    }
+
+    .stats-card {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .stats-card .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .stats-card .title {
+        color: rgba(0,0,0,0.87);
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.1px;
+    }
+
+    .stats-card .value {
+        color: rgba(0,0,0,0.87);
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    .stats-card .trend {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.875rem;
+        color: rgba(0,0,0,0.6);
+    }
+
+    .trend.positive {
+        color: #4caf50;
+    }
+
+    .trend.negative {
+        color: #f44336;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .data-table th {
+        background: #f5f5f5;
+        color: rgba(0,0,0,0.87);
+        font-weight: 500;
+        text-align: left;
+        padding: 16px;
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .data-table td {
+        padding: 16px;
+        color: rgba(0,0,0,0.87);
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .data-table tr:hover {
+        background: rgba(0,0,0,0.04);
+    }
+
+    .status-badge {
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+
+    .status-active {
+        background: rgba(76,175,80,0.1);
+        color: #4caf50;
+    }
+
+    .status-inactive {
+        background: rgba(244,67,54,0.1);
+        color: #f44336;
+    }
+
+    .material-button {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 8px 24px;
+        border-radius: 24px;
+        font-weight: 500;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 
+                    0 2px 2px 0 rgba(0,0,0,0.14), 
+                    0 1px 5px 0 rgba(0,0,0,0.12);
+    }
+
+    .material-button:hover {
+        background: #0097e6;
+        box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2), 
+                    0 4px 5px 0 rgba(0,0,0,0.14), 
+                    0 1px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        background: white;
+        border-radius: 24px;
+        padding: 8px 16px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 24px;
+    }
+
+    .search-bar input {
+        border: none;
+        outline: none;
+        padding: 8px;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .search-bar i {
+        color: rgba(0,0,0,0.54);
+        margin-right: 8px;
+    }
+</style>
+
+<div class="container-fluid py-4">
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Search users, devices, or settings...">
+    </div>
+
+    <!-- Stats Cards Row -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="material-card stats-card">
+                <div class="icon" style="background: rgba(0,168,255,0.1); color: var(--primary-color);">
+                    <i class="bi bi-people"></i>
+                </div>
+                <div class="title">Total Users</div>
+                <div class="value">{{ total_users }}</div>
+                <div class="trend positive">
+                    <i class="bi bi-arrow-up"></i>
+                    <span>12% vs last month</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="material-card stats-card">
+                <div class="icon" style="background: rgba(76,175,80,0.1); color: #4caf50;">
+                    <i class="bi bi-device-hdd"></i>
+                </div>
+                <div class="title">Active Devices</div>
+                <div class="value">{{ active_devices }}</div>
+                <div class="trend positive">
+                    <i class="bi bi-arrow-up"></i>
+                    <span>8% vs last month</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="material-card stats-card">
+                <div class="icon" style="background: rgba(255,152,0,0.1); color: #ff9800;">
+                    <i class="bi bi-activity"></i>
+                </div>
+                <div class="title">System Load</div>
+                <div class="value">78%</div>
+                <div class="trend negative">
+                    <i class="bi bi-arrow-down"></i>
+                    <span>3% vs last month</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="material-card stats-card">
+                <div class="icon" style="background: rgba(233,30,99,0.1); color: #e91e63;">
+                    <i class="bi bi-bell"></i>
+                </div>
+                <div class="title">Alerts</div>
+                <div class="value">{{ alerts_count }}</div>
+                <div class="trend negative">
+                    <i class="bi bi-arrow-up"></i>
+                    <span>5% vs last month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Users Table -->
+    <div class="material-card mb-4">
+        <div class="p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="m-0">Recent Users</h5>
+                <button class="material-button">View All</button>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Email</th>
+                            <th>Devices</th>
+                            <th>Status</th>
+                            <th>Last Active</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <i class="bi bi-person-circle" style="font-size: 1.5rem; color: var(--primary-color);"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 500;">{{ user.name }}</div>
+                                        <div style="font-size: 0.875rem; color: rgba(0,0,0,0.6);">ID: {{ user.id }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.devices|length }}</td>
+                            <td>
+                                <span class="status-badge {% if user.is_active %}status-active{% else %}status-inactive{% endif %}">
+                                    {{ "Active" if user.is_active else "Inactive" }}
+                                </span>
+                            </td>
+                            <td>{{ user.last_login.strftime('%Y-%m-%d %H:%M') if user.last_login else 'Never' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Device Status Table -->
+    <div class="material-card">
+        <div class="p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="m-0">Device Status</h5>
+                <button class="material-button">Manage Devices</button>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Device</th>
+                            <th>Owner</th>
+                            <th>Status</th>
+                            <th>Last Update</th>
+                            <th>Battery</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for device in devices %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <i class="bi bi-device-hdd" style="font-size: 1.5rem; color: var(--primary-color);"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 500;">{{ device.name }}</div>
+                                        <div style="font-size: 0.875rem; color: rgba(0,0,0,0.6);">ID: {{ device.id }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ device.user.name }}</td>
+                            <td>
+                                <span class="status-badge {% if device.is_online %}status-active{% else %}status-inactive{% endif %}">
+                                    {{ "Online" if device.is_online else "Offline" }}
+                                </span>
+                            </td>
+                            <td>{{ device.last_update.strftime('%Y-%m-%d %H:%M') if device.last_update else 'Never' }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="progress" style="width: 100px; height: 8px; border-radius: 4px; background: rgba(0,0,0,0.1);">
+                                        <div class="progress-bar" role="progressbar" 
+                                             style="width: {{ device.battery_level }}%; background: {% if device.battery_level > 60 %}#4caf50{% elif device.battery_level > 20 %}#ff9800{% else %}#f44336{% endif %};"
+                                             aria-valuenow="{{ device.battery_level }}" aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                    <span class="ms-2" style="font-size: 0.875rem;">{{ device.battery_level }}%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

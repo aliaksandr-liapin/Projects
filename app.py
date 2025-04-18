@@ -93,6 +93,18 @@ def logout():
 def dashboard():
     return render_template('dashboard.html', title='Dashboard')
 
+@app.route('/privacy-policy')
+def privacy_policy():
+    return render_template('privacy_policy.html', title='Privacy Policy')
+
+@app.route('/faq')
+def faq():
+    return render_template('faq.html', title='FAQ')
+
+@app.route('/sensor-guide')
+def sensor_guide():
+    return render_template('sensor_guide.html', title='Sensor Setup Guide')
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

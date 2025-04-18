@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 mb-4">Sensor Setup Guide</h1>
+            
+            <!-- Introduction -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Getting Started</h2>
+                    <p>This guide will help you set up your smart sensors and connect them to your SmartHouse dashboard. Follow these steps carefully to ensure proper installation and functionality.</p>
+                </div>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">1</div>
+                        <h2 class="h4 mb-0">Prepare Your Sensors</h2>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Unpack all sensor components</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Check for any physical damage</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Ensure batteries are properly installed</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Verify sensor compatibility with your devices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">2</div>
+                        <h2 class="h4 mb-0">Installation Locations</h2>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="bi bi-thermometer-half me-2 text-primary"></i>Temperature Sensors
+                                    </h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2">• Place away from direct sunlight</li>
+                                        <li class="mb-2">• Keep away from heat sources</li>
+                                        <li class="mb-2">• Install at average room height</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="bi bi-moisture me-2 text-primary"></i>Motion Sensors
+                                    </h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2">• Mount at 6-8 feet height</li>
+                                        <li class="mb-2">• Avoid direct sunlight</li>
+                                        <li class="mb-2">• Clear line of sight</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">3</div>
+                        <h2 class="h4 mb-0">Connect to Dashboard</h2>
+                    </div>
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item border-0">
+                            Open the SmartHouse dashboard
+                        </li>
+                        <li class="list-group-item border-0">
+                            Click "Add Device" in the top menu
+                        </li>
+                        <li class="list-group-item border-0">
+                            Select "Sensor" from the device type menu
+                        </li>
+                        <li class="list-group-item border-0">
+                            Follow the on-screen pairing instructions
+                        </li>
+                        <li class="list-group-item border-0">
+                            Test sensor functionality
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Troubleshooting Tips</h2>
+                    <div class="alert alert-warning">
+                        <h5 class="alert-heading">
+                            <i class="bi bi-exclamation-triangle me-2"></i>Common Issues
+                        </h5>
+                        <ul class="mb-0">
+                            <li>Sensor not connecting? Try resetting the device</li>
+                            <li>Inaccurate readings? Check sensor placement</li>
+                            <li>Battery issues? Replace with fresh batteries</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <h3 class="h4 mb-3">Need Help?</h3>
+                    <p class="mb-3">Our support team is available 24/7 to assist with your setup.</p>
+                    <a href="mailto:support@ezsmarthouse.com" class="btn btn-primary">
+                        <i class="bi bi-envelope me-2"></i>Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

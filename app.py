@@ -19,18 +19,14 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 @app.route('/')
-def home():
+def index():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
     return render_template('index.html', title='Home')
 
 @app.route('/about')
 def about():
-    return render_template('about.html', title='About')
-
-@app.route('/how-it-works')
-def how_it_works():
-    return render_template('how_it_works.html', title='How It Works')
+    return render_template('about.html', title='About Us')
 
 @app.route('/pricing')
 def pricing():

@@ -1,16 +1,165 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-        <h1 class="mb-4">About This App</h1>
-        <p class="lead">This is a Flask application built with:</p>
-        <ul class="list-group mb-4">
-            <li class="list-group-item">Flask - A lightweight Python web framework</li>
-            <li class="list-group-item">Bootstrap 5 - For responsive design</li>
-            <li class="list-group-item">Jinja2 - For template rendering</li>
-        </ul>
-        <p>Feel free to explore and modify this application to suit your needs!</p>
+<div class="container">
+    <!-- Hero Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-4 fw-bold mb-4">About SmartHouse</h1>
+            <p class="lead text-muted">Smart Living, Simplified</p>
+        </div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <p class="fs-5 mb-4">At SmartHouse, we believe your home should work for you—seamlessly, securely, and sustainably. Our platform empowers you to control, monitor, and optimize your smart devices from one intuitive dashboard, making everyday life effortless.</p>
+        </div>
+    </div>
+
+    <!-- Our Story -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="mb-4">Our Story</h2>
+            <p class="mb-4">Founded in 2024, SmartHouse began as a small team of tech enthusiasts tired of juggling multiple smart home apps. Today, we're a trusted solution for thousands of users who value:</p>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">
+                                <i class="bi bi-check-circle me-2"></i>Simplicity
+                            </h5>
+                            <p class="card-text">One dashboard for all devices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">
+                                <i class="bi bi-shield-check me-2"></i>Security
+                            </h5>
+                            <p class="card-text">End-to-end encryption for cameras and data.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">
+                                <i class="bi bi-gear me-2"></i>Customization
+                            </h5>
+                            <p class="card-text">Adaptable to apartments, homes, and offices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Choose -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="mb-4">Why Choose SmartHouse?</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-phone me-2 text-primary"></i>All-in-One Control
+                            </h5>
+                            <p class="card-text">Manage lights, cameras, thermostats, and more—no more app-hopping.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-graph-up me-2 text-primary"></i>Real-Time Insights
+                            </h5>
+                            <p class="card-text">Receive alerts, check camera feeds, and track energy usage instantly.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-shield-lock me-2 text-primary"></i>Privacy First
+                            </h5>
+                            <p class="card-text">Your data stays yours. We never sell or share personal information.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-arrow-up-circle me-2 text-primary"></i>Scalable Solutions
+                            </h5>
+                            <p class="card-text">Start with a single camera, expand to a full smart ecosystem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="mb-4">Meet the Team</h2>
+            <p class="mb-4">Our diverse team of engineers, designers, and smart-home experts is dedicated to innovation. From AI-driven analytics to 24/7 customer support, we're here to make your home smarter.</p>
+            <div class="text-center">
+                <a href="#" class="btn btn-primary btn-lg">
+                    <i class="bi bi-briefcase me-2"></i>Join Our Mission
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="mb-4">Join Our Community</h2>
+            <p class="mb-4">Have feedback or ideas? We'd love to hear from you!</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="mailto:support@ezsmarthouse.com" class="btn btn-outline-primary">
+                    <i class="bi bi-envelope me-2"></i>Email Us
+                </a>
+                <a href="#" class="btn btn-outline-primary">
+                    <i class="bi bi-twitter me-2"></i>Twitter
+                </a>
+                <a href="#" class="btn btn-outline-primary">
+                    <i class="bi bi-instagram me-2"></i>Instagram
+                </a>
+                <a href="#" class="btn btn-outline-primary">
+                    <i class="bi bi-linkedin me-2"></i>LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-5">
+                    <h3 class="mb-4">Ready to Get Started?</h3>
+                    <p class="mb-4">Join thousands of users who have simplified their smart home experience.</p>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-person-plus me-2"></i>Get Started
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %} 

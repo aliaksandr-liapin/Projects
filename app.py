@@ -20,10 +20,11 @@ def load_user(user_id):
 
 @app.route('/')
 def home():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
     return render_template('index.html', title='Home')
 
 @app.route('/about')
-@login_required
 def about():
     return render_template('about.html', title='About')
 
@@ -66,7 +67,7 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('dashboard'))
     
     if request.method == 'POST':
         email = request.form.get('email')
@@ -75,7 +76,7 @@ def login():
         
         if user and user.check_password(password):
             login_user(user)
-            return redirect(url_for('home'))
+            return redirect(url_for('dashboard'))
         
         flash('Invalid email or password')
     
@@ -86,6 +87,11 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html', title='Dashboard')
 
 if __name__ == '__main__':
     with app.app_context():

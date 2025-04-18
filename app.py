@@ -39,7 +39,7 @@ def blog():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
     
     if request.method == 'POST':
         email = request.form.get('email')
@@ -82,7 +82,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
 
 @app.route('/dashboard')
 @login_required
@@ -100,6 +100,16 @@ def faq():
 @app.route('/sensor-guide')
 def sensor_guide():
     return render_template('sensor_guide.html', title='Sensor Setup Guide')
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html', title='Profile')
+
+@app.route('/settings')
+@login_required
+def settings():
+    return render_template('settings.html', title='Settings')
 
 if __name__ == '__main__':
     with app.app_context():

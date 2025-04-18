@@ -1,125 +1,114 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero-section py-5 bg-light">
-    <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">Smart Home Blog</h1>
-                <p class="lead text-muted">Expert insights on home protection, smart technology, and healthy living.</p>
+<div class="container py-5">
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+            <h1 class="display-4 fw-bold mb-4">Smart Home Blog</h1>
+            <p class="lead text-muted">Stay updated with the latest in smart home technology and tips.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Featured Article -->
+        <div class="col-12">
+            <div class="card border-0 shadow-lg">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <img src="https://placehold.co/600x400" class="img-fluid rounded-start h-100 object-fit-cover" alt="Featured Article">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body p-4">
+                            <span class="badge bg-primary mb-2">Featured</span>
+                            <h2 class="card-title h3 mb-3">The Future of Smart Home Technology</h2>
+                            <p class="card-text text-muted mb-4">Explore how AI and IoT are revolutionizing home automation and what to expect in the coming years.</p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://placehold.co/40x40" class="rounded-circle me-2" alt="Author">
+                                <div>
+                                    <p class="mb-0 fw-bold">John Doe</p>
+                                    <small class="text-muted">March 15, 2024</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Regular Articles -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="https://placehold.co/400x250" class="card-img-top" alt="Article Image">
+                <div class="card-body">
+                    <span class="badge bg-secondary mb-2">Tips & Tricks</span>
+                    <h3 class="card-title h5 mb-3">10 Ways to Save Energy with Smart Devices</h3>
+                    <p class="card-text text-muted mb-4">Learn how to optimize your smart home devices for maximum energy efficiency.</p>
+                    <div class="d-flex align-items-center">
+                        <img src="https://placehold.co/40x40" class="rounded-circle me-2" alt="Author">
+                        <div>
+                            <p class="mb-0 fw-bold">Jane Smith</p>
+                            <small class="text-muted">March 10, 2024</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="https://placehold.co/400x250" class="card-img-top" alt="Article Image">
+                <div class="card-body">
+                    <span class="badge bg-info mb-2">Security</span>
+                    <h3 class="card-title h5 mb-3">Securing Your Smart Home Network</h3>
+                    <p class="card-text text-muted mb-4">Essential tips to protect your smart home from potential security threats.</p>
+                    <div class="d-flex align-items-center">
+                        <img src="https://placehold.co/40x40" class="rounded-circle me-2" alt="Author">
+                        <div>
+                            <p class="mb-0 fw-bold">Mike Johnson</p>
+                            <small class="text-muted">March 5, 2024</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="https://placehold.co/400x250" class="card-img-top" alt="Article Image">
+                <div class="card-body">
+                    <span class="badge bg-success mb-2">Integration</span>
+                    <h3 class="card-title h5 mb-3">Smart Home Device Compatibility Guide</h3>
+                    <p class="card-text text-muted mb-4">A comprehensive guide to ensuring your smart devices work together seamlessly.</p>
+                    <div class="d-flex align-items-center">
+                        <img src="https://placehold.co/40x40" class="rounded-circle me-2" alt="Author">
+                        <div>
+                            <p class="mb-0 fw-bold">Sarah Wilson</p>
+                            <small class="text-muted">March 1, 2024</small>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
 
-<!-- Blog Posts -->
-<section class="py-5">
-    <div class="container">
-        <div class="row g-4">
-            <!-- Post 1 -->
-            <div class="col-lg-4 col-md-6">
-                <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1584473457409-ceb1e98a24dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                         class="card-img-top" alt="Humidity and mold growth illustration">
-                    <div class="card-body p-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <span class="badge bg-primary rounded-pill me-2">Home Health</span>
-                            <small class="text-muted">May 15, 2024</small>
+    <!-- Newsletter Section -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                    <h3 class="h4 mb-3">Subscribe to Our Newsletter</h3>
+                    <p class="text-muted mb-4">Get the latest smart home tips and updates delivered to your inbox.</p>
+                    <form class="row g-3 justify-content-center">
+                        <div class="col-md-8">
+                            <input type="email" class="form-control" placeholder="Enter your email">
                         </div>
-                        <h2 class="h4 card-title mb-3">
-                            <a href="#" class="text-decoration-none text-dark">How Humidity Levels Affect Mold Growth (And How to Stop It)</a>
-                        </h2>
-                        <p class="card-text text-muted">Learn how maintaining optimal humidity levels can prevent mold growth and protect your home's air quality.</p>
-                        <a href="#" class="btn btn-link text-primary p-0">Read More <i class="bi bi-arrow-right ms-1"></i></a>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Post 2 -->
-            <div class="col-lg-4 col-md-6">
-                <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                         class="card-img-top" alt="Hidden mold detection illustration">
-                    <div class="card-body p-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <span class="badge bg-primary rounded-pill me-2">Detection</span>
-                            <small class="text-muted">May 10, 2024</small>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary w-100">Subscribe</button>
                         </div>
-                        <h2 class="h4 card-title mb-3">
-                            <a href="#" class="text-decoration-none text-dark">5 Signs Your Home Has Hidden Mold</a>
-                        </h2>
-                        <p class="card-text text-muted">Discover the subtle indicators of hidden mold in your home and learn how to address them before they become major problems.</p>
-                        <a href="#" class="btn btn-link text-primary p-0">Read More <i class="bi bi-arrow-right ms-1"></i></a>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Post 3 -->
-            <div class="col-lg-4 col-md-6">
-                <article class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112e0f0a4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                         class="card-img-top" alt="Smart sensor technology illustration">
-                    <div class="card-body p-4">
-                        <div class="d-flex align-items-center mb-3">
-                            <span class="badge bg-primary rounded-pill me-2">Technology</span>
-                            <small class="text-muted">May 5, 2024</small>
-                        </div>
-                        <h2 class="h4 card-title mb-3">
-                            <a href="#" class="text-decoration-none text-dark">Smart Sensors vs. Traditional Mold Inspections: What's Better?</a>
-                        </h2>
-                        <p class="card-text text-muted">Compare the effectiveness of modern smart sensors with traditional mold inspection methods in protecting your home.</p>
-                        <a href="#" class="btn btn-link text-primary p-0">Read More <i class="bi bi-arrow-right ms-1"></i></a>
-                    </div>
-                </article>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</section>
-
-<!-- Newsletter Section -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 text-center">
-                <h2 class="h3 mb-4">Stay Updated</h2>
-                <p class="text-muted mb-4">Subscribe to our newsletter for the latest insights on home protection and smart technology.</p>
-                <form class="row g-3 justify-content-center">
-                    <div class="col-md-8">
-                        <input type="email" class="form-control form-control-lg" placeholder="Enter your email">
-                    </div>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-primary btn-lg w-100">Subscribe</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-    .hero-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    }
-    .card {
-        transition: transform 0.2s;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-    }
-    .card-img-top {
-        height: 200px;
-        object-fit: cover;
-    }
-    .badge {
-        font-weight: 500;
-        padding: 0.5em 1em;
-    }
-    .btn-link {
-        text-decoration: none;
-    }
-    .btn-link:hover {
-        text-decoration: underline;
-    }
-</style>
+</div>
 {% endblock %} 

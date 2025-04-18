@@ -1,232 +1,125 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero-section py-5 bg-light">
-    <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
-                <h1 class="display-4 fw-bold mb-4">Simple, Transparent Pricing</h1>
-                <p class="lead text-muted">Choose the perfect plan for your home's needs. All plans include our core protection features.</p>
-            </div>
+<div class="container py-5">
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+            <h1 class="display-4 fw-bold mb-4">Choose Your Plan</h1>
+            <p class="lead text-muted">Select the perfect plan for your smart home needs.</p>
         </div>
     </div>
-</section>
 
-<!-- Pricing Section -->
-<section class="py-5">
-    <div class="container">
-        <div class="row g-4">
-            <!-- Basic Tier -->
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm rounded-4">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <h3 class="h4 mb-2">Basic</h3>
-                            <div class="display-4 fw-bold mb-2">Free</div>
-                            <p class="text-muted">Perfect for getting started</p>
-                        </div>
-                        <ul class="list-unstyled mb-4">
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                1 sensor included
-                            </li>
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                Email alerts
-                            </li>
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                Basic dashboard access
-                            </li>
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                Community support
-                            </li>
-                        </ul>
-                        <div class="d-grid">
-                            <a href="{{ url_for('register') }}" class="btn btn-outline-primary">Sign Up</a>
-                        </div>
+    <div class="row g-4">
+        <!-- Basic Plan -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h3 class="h4">Basic</h3>
+                        <div class="display-4 fw-bold">$9.99</div>
+                        <div class="text-muted">per month</div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Pro Tier -->
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-lg rounded-4 position-relative">
-                    <div class="position-absolute top-0 end-0 m-3">
-                        <span class="badge bg-primary rounded-pill">Most Popular</span>
-                    </div>
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <h3 class="h4 mb-2">Pro</h3>
-                            <div class="display-4 fw-bold mb-2">$9.99<span class="fs-6 text-muted">/month</span></div>
-                            <p class="text-muted">Ideal for small to medium homes</p>
-                        </div>
-                        <ul class="list-unstyled mb-4">
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                5 sensors included
-                            </li>
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                SMS & email alerts
-                            </li>
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                Weather integration
-                            </li>
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                Priority email support
-                            </li>
-                        </ul>
-                        <div class="d-grid">
-                            <a href="{{ url_for('register') }}" class="btn btn-primary">Start Free Trial</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Premium Tier -->
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm rounded-4">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <h3 class="h4 mb-2">Premium</h3>
-                            <div class="display-4 fw-bold mb-2">$24.99<span class="fs-6 text-muted">/month</span></div>
-                            <p class="text-muted">Complete home protection</p>
-                        </div>
-                        <ul class="list-unstyled mb-4">
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                Whole-home coverage
-                            </li>
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                Unlimited sensors
-                            </li>
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                Priority support
-                            </li>
-                            <li class="mb-3">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                Advanced analytics
-                            </li>
-                        </ul>
-                        <div class="d-grid">
-                            <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a>
-                        </div>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Up to 5 devices
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Basic monitoring
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Email alerts
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Community support
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="{{ url_for('register') }}" class="btn btn-outline-primary w-100">Get Started</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- FAQ Section -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h2 class="text-center mb-5">Frequently Asked Questions</h2>
-                <div class="accordion" id="faqAccordion">
-                    <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button rounded-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                Can I upgrade or downgrade my plan later?
-                            </button>
-                        </h3>
-                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades take effect at the end of your billing cycle.
-                            </div>
-                        </div>
+        <!-- Pro Plan -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-lg">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <span class="badge bg-primary mb-2">Most Popular</span>
+                        <h3 class="h4">Pro</h3>
+                        <div class="display-4 fw-bold">$19.99</div>
+                        <div class="text-muted">per month</div>
                     </div>
-                    <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed rounded-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                What happens after the free trial?
-                            </button>
-                        </h3>
-                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                After your 14-day free trial, you'll be automatically enrolled in the Pro plan. You can cancel anytime before the trial ends to avoid charges.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed rounded-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                Do you offer custom plans for larger properties?
-                            </button>
-                        </h3>
-                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Yes, we offer custom solutions for larger properties. Contact our sales team to discuss your specific needs.
-                            </div>
-                        </div>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Up to 15 devices
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Advanced monitoring
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            SMS & Email alerts
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Priority support
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Data history (30 days)
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="{{ url_for('register') }}" class="btn btn-primary w-100">Get Started</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- Contact Modal -->
-<div class="modal fade" id="contactModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4">
-            <div class="modal-header border-0">
-                <h5 class="modal-title">Contact Us</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-control" required>
+        <!-- Enterprise Plan -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h3 class="h4">Enterprise</h3>
+                        <div class="display-4 fw-bold">Custom</div>
+                        <div class="text-muted">contact us</div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" required>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Unlimited devices
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Custom integrations
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Dedicated support
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            Advanced analytics
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            API access
+                        </li>
+                    </ul>
+                    <div class="text-center">
+                        <a href="mailto:sales@ezsmarthouse.com" class="btn btn-outline-primary w-100">Contact Sales</a>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Message</label>
-                        <textarea class="form-control" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Send Message</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<style>
-    .hero-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    }
-    .card {
-        transition: transform 0.2s;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-    }
-    .btn {
-        border-radius: 50px;
-    }
-    .accordion-button:not(.collapsed) {
-        background-color: #f8f9fa;
-        color: #0d6efd;
-    }
-    .accordion-button:focus {
-        box-shadow: none;
-        border-color: rgba(0,0,0,.125);
-    }
-    .badge {
-        font-weight: 500;
-        padding: 0.5em 1em;
-    }
-</style>
 {% endblock %} 

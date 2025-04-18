@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="h4 mb-4">Settings</h2>
+
+                    <!-- Notification Settings -->
+                    <div class="mb-4">
+                        <h3 class="h5 mb-3">Notification Preferences</h3>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                            <label class="form-check-label" for="emailNotifications">
+                                Email Notifications
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="pushNotifications" checked>
+                            <label class="form-check-label" for="pushNotifications">
+                                Push Notifications
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="smsNotifications">
+                            <label class="form-check-label" for="smsNotifications">
+                                SMS Notifications
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Device Settings -->
+                    <div class="mb-4">
+                        <h3 class="h5 mb-3">Device Settings</h3>
+                        <div class="mb-3">
+                            <label class="form-label">Temperature Unit</label>
+                            <select class="form-select">
+                                <option value="celsius">Celsius (°C)</option>
+                                <option value="fahrenheit" selected>Fahrenheit (°F)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Time Zone</label>
+                            <select class="form-select">
+                                <option value="utc">UTC</option>
+                                <option value="est" selected>Eastern Time (ET)</option>
+                                <option value="pst">Pacific Time (PT)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Settings -->
+                    <div class="mb-4">
+                        <h3 class="h5 mb-3">Privacy Settings</h3>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="dataCollection" checked>
+                            <label class="form-check-label" for="dataCollection">
+                                Allow anonymous data collection
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="locationSharing">
+                            <label class="form-check-label" for="locationSharing">
+                                Share location for weather updates
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Theme Settings -->
+                    <div class="mb-4">
+                        <h3 class="h5 mb-3">Theme Settings</h3>
+                        <div class="mb-3">
+                            <label class="form-label">Theme</label>
+                            <select class="form-select">
+                                <option value="light" selected>Light</option>
+                                <option value="dark">Dark</option>
+                                <option value="system">System Default</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="card border-0 shadow-sm mt-4 border-danger">
+                <div class="card-body p-4">
+                    <h3 class="h5 mb-4 text-danger">Danger Zone</h3>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h4 class="h6 mb-1">Delete Account</h4>
+                            <p class="text-muted mb-0">Permanently delete your account and all associated data</p>
+                        </div>
+                        <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                            Delete Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Account Modal -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-danger mb-4">Are you sure you want to delete your account? This action cannot be undone.</p>
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Enter your password to confirm</label>
+                        <input type="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger w-100">Delete Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
